@@ -19,11 +19,16 @@ import Navigation from "../../Navigation/Navigation";
 import AdminNavigate from "../../Navigation/AdminNavigation";
 
 export default function AdminLogin() {
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [backData, SetBacKData] = useState([]);
+
+  function change() {
+    navigate("/userregistration");
+  }
 
   const setYourEmail = (e) => {
     setEmail(e.target.value);
@@ -33,20 +38,35 @@ export default function AdminLogin() {
     setPassword(e.target.value);
   };
 
-  function check() {
+  const check = (e) => {
+    e.preventDefault();
+
+    let loggedIn = false;
+
     backData.map((ele) => {
-      if (
-        (ele.email === email && ele.password === password) ||
-        (ele.mobileNo == email && ele.password === password)
-      ) {
-        navigate("/adminHome");
+      if (ele.email === email && ele.password === password) {
+        // let session = sessionStorage.getItem("data");
+        // if (session === null) {
+        //   sessionStorage.setItem("data");
+        // } else {
+        //   sessionStorage.removeItem("data");
+        //   sessionStorage.setItem("data");
+        // }
+        loggedIn = true;
       }
     });
-  }
+
+    if (loggedIn) {
+      alert("You have successfully logged in.");
+      navigate("/adminHome");
+    } else {
+      alert("Incorrect email or password. Please try again.");
+    }
+  };
 
   useEffect(() => {
     axios
-      .get("http://localhost:9100/admins")
+      .get("http://localhost:8084/admins/all")
       .then((response) => SetBacKData(response.data));
   }, []);
   return (
@@ -108,8 +128,7 @@ export default function AdminLogin() {
                   Login
                 </MDBBtn>
                 <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
-                  Do not have an account! Contact us at
-                  admin@veggiesdelivery.com
+                  
                 </p>
               </MDBCardBody>
             </MDBCol>

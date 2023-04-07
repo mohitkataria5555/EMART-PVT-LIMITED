@@ -12,8 +12,8 @@ function ProductComponent(props) {
     setCartAdd(true);
     setButtonValue("Product is added");
 
-    productData1.map((ele) => {
-      if (ele.id == id) {
+    productData1.forEach((ele) => {
+      if (ele.id === id) {
         ele = {
           ...ele,
           mobileNo: parseInt(sessionStorage.getItem("data")),
@@ -25,7 +25,6 @@ function ProductComponent(props) {
       }
     });
   }
-
   useEffect(() => {
     axios.get("http://localhost:8079/api/products").then((response) => {
       setProductData1(response.data);

@@ -97,7 +97,7 @@ let sum=0;
       sessionStorage.setItem("sum",0)
       sessionStorage.setItem("sum",sum)
       setCartData(response.data);
-      axios.get("http://localhost:9100/order").then((res)=>{
+      axios.get("http://localhost:8078/orders").then((res)=>{
         setoldData(res.data);
       })
     });

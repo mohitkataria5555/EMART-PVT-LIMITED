@@ -31,10 +31,10 @@ import {
           if(element.mobileNo===mobiledata){
             
 
-            axios.post("http://localhost:9100/order/add",{...element,date})
+            axios.post("http://localhost:8078/orders",{...element,date})
             .then((response)=>console.log(response))
             axios
-            .delete(`http://localhost:9100/cart/delete/${element.id}`)
+            .delete(`http://localhost:8083/carts/delete/${element.id}`)
             .then((res) => console.log(res));
           }
         })
@@ -43,7 +43,7 @@ import {
     
       let sum=0;
       useEffect(() => {
-        axios.get("http://localhost:9100/cart").then((response) => {
+        axios.get("http://localhost:8083/carts/all").then((response) => {
           sum=0;
           response.data.map((ele)=>{
             if(ele.mobileNo===mobiledata){
@@ -58,7 +58,7 @@ import {
       },[]);
       useEffect(() => {
         totalPrice1=0;
-        axios.get("http://localhost:9100/cart").then((response) => {
+        axios.get("http://localhost:8083/carts").then((response) => {
           response.data.map((ele)=>{
             if(ele.mobileNo === mobiledata){
               totalPrice1 +=ele.totalPrice;
