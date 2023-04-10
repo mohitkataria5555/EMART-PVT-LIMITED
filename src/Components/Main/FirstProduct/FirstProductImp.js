@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import ImageChange from "../Product/imageChange";
 
 import FirstProd from "./FirstProd";
+import Newhome from "../../Navigation/Newhome";
 
 export default function FirstProdimp() {
   const [productData1, setProductData1] = useState([]);
@@ -15,7 +16,7 @@ export default function FirstProdimp() {
     
   return (
     <>
-      <ImageChange/>
+      <Newhome/>
       <div className="productcart" style={{marginLeft:"15px"}}>
         {productData1.map((element) => {
         

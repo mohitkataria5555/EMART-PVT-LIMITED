@@ -131,18 +131,8 @@ let sum=0;
                   <td>{ele.name}</td>
                   <td>{ele.price * ele.quantity}</td>
                   <td>{ele.quantity}</td>
-                  <button
-                    onClick={() => pluseChange(ele.id)}
-                    className="buttonclass1"
-                  >
-                    +
-                  </button>
-                  <button
-                    onClick={() => minusChange(ele.id)}
-                    className="buttonclass2"
-                  >
-                    -
-                  </button>
+                  
+                 
                 </tr>
               </>
             );

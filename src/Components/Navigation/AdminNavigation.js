@@ -45,16 +45,7 @@ function AdminNavigate() {
               </NavDropdown>
               <Nav.Link style={{backgroundColor:"white", width:140,height:40, borderRadius:5,marginRight:5}}  onClick={()=>navigate("/userregistration")}>SIGN-UP</Nav.Link>
             </Nav>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-                
-              />
-              <Button  variant="outline-success" on>Search</Button>
-            </Form>
+          
           </Navbar.Collapse>
         </Container>
       </Navbar>

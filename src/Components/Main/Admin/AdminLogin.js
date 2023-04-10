@@ -33,7 +33,7 @@ export default function AdminLogin() {
           <MDBRow className="g-0">
             <MDBCol md="6">
               <MDBCardImage
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQfzpfYXxgsDPyU9o9wGsWeH8qe0Vsqgo8Hw&usqp=CAU"
+                src="https://cdn2.vectorstock.com/i/1000x1000/31/56/amazon-logo-vector-39773156.jpg"
                 alt="login form"
                 className="rounded-start w-100"
               />

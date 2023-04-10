@@ -34,7 +34,7 @@ import {
             axios.post("http://localhost:8078/orders",{...element,date})
             .then((response)=>console.log(response))
             axios
-            .delete(`http://localhost:8083/carts/delete/${element.id}`)
+            .delete(`http://localhost:8083/carts/delete/${element.mobileNo}`)
             .then((res) => console.log(res));
           }
         })
@@ -91,19 +91,11 @@ import {
     
                     <div className="d-flex justify-content-between align-items-center mb-4">
                       <div>
-                        <p className="mb-1">Shopping cart</p>
+                       
                         {/* items count */}
                         <p className="mb-0">You have {cartData.length} items in your cart</p> 
                       </div>
-                      <div>
-                        <p>
-                          <span className="text-muted">Sort by:</span>
-                          <a href="#!" className="text-body">
-                            price
-                            <MDBIcon fas icon="angle-down mt-1" />
-                          </a>
-                        </p>
-                      </div>
+                      
                     </div>
       {cartData.map((ele)=>{
           if (ele.mobileNo === mobiledata){
