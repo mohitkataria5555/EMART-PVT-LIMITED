@@ -142,7 +142,7 @@ let sum=0;
         })}
       </Table>
         
-      <h2 id="placeorderid" onClick={ordernow}>
+      <h2 id="placeorderid" onClick={ordernow} >
         {" "}
         Payment!{" "}
       </h2>
@@ -194,7 +194,7 @@ let sum=0;
                                {ele.name}
                               </MDBTypography>
 
-                              <p className="small mb-0">Fresh</p>
+                              <p className="small mb-0"></p>
                             </div>
                           </div>
                           <div className="d-flex flex-row align-items-center">
@@ -228,7 +228,7 @@ let sum=0;
                   </MDBCol>
     
                   <MDBCol lg="5">
-                    <MDBCard className="bg-primary text-white rounded-3">
+                    <MDBCard className="bg-dark text-white rounded-3">
                       <MDBCardBody>
                         <div className="d-flex justify-content-between align-items-center mb-4">
                           <MDBTypography tag="h5" className="mb-0">

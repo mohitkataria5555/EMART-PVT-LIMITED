@@ -36,7 +36,7 @@ const ProductX = () => {
                 </div> <Link class="card-product-btn" to="/userlogin" >see more</Link>
             </div>
             <div class="card-product">
-                <h2>Make Your Home with amazon</h2>
+                <h2>Make Your Home with EMART</h2>
                 <div class="card-product-nested-card">
                     <div class="card-nested">
                         <img
@@ -62,7 +62,7 @@ const ProductX = () => {
                 <Link class="card-product-btn" to="/userlogin" >see more</Link>
             </div>
             <div class="card-product">
-                <h2> Get top Fashion Deals on amazon</h2>
+                <h2> Get top Fashion Deals on EMART</h2>
                 <div class="card-product-nested-card">
                     <div class="card-nested">
                         <img

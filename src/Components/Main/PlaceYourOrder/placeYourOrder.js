@@ -149,7 +149,7 @@ import {
                   </MDBCol>
     
                   <MDBCol lg="5">
-                    <MDBCard className="bg-primary text-white rounded-3">
+                    <MDBCard className="bg-dark text-white rounded-3">
                       <MDBCardBody>
                         <div className="d-flex justify-content-between align-items-center mb-4">
                           <MDBTypography tag="h5" className="mb-0">
