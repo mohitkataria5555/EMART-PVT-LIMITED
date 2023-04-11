@@ -113,13 +113,6 @@ const Profile = () => {
                   </MDBRow>
                   <hr />
                 
-                  <MDBRow>
-                    <MDBCol sm="3">
-                      <MDBCardText>Password</MDBCardText>
-                    </MDBCol>
-                    
-                      
-                  </MDBRow>
                   
                 </MDBCardBody>
               </MDBCard>

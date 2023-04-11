@@ -21,92 +21,34 @@ import {
 export default function Cart() {
   const navigate = useNavigate();
   const [cartData, setCartData] = useState([]);
-  const [oldData, setoldData] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
+ 
   let mobiledata = parseInt(sessionStorage.getItem("data"));
  
 
-  // CartData Code : Cart Increament Code
-  function pluseChange(mobileNo) {
-    cartData.map((element) => {
-      if (element.mobileNo === mobileNo) {
-        let ele = {
-          ...element,
-          quantity: element.quantity + 1,
-          totalPrice:(element.quantity+1)*element.price
-        };
-        axios
-          .put(`http://localhost:8083/carts/update/${mobileNo}`, ele)
-          .then((response) => {});  
-      }
-
-    });
-    axios.get("http://localhost:8083/carts/all").then((response) => {
-      sum=0;
-      response.data.map((ele)=>{
-        if(ele.mobileNo===mobiledata){
-          sum +=ele.totalPrice;
-         
-        }
-      })
-      sessionStorage.setItem("sum",0)
-      sessionStorage.setItem("sum",sum)
-      setCartData(response.data)})
-  }
-
-  // CartData Code : Cart Decreament Code
-  function minusChange(mobileNo) {
-    cartData.map((element) => {
-      if (element.mobileNo === mobileNo) {
-        let ele = {
-          ...element,
-          quantity: element.quantity - 1,
-          totalPrice:(element.quantity-1)*element.price
-        };
-        axios
-          .put(`http://localhost:8083/carts/update/${mobileNo}`, ele)
-          .then((response) => {});
-      }
-    });
-    axios.get("http://localhost:8083/carts/all").then((response) => {
-      sum=0;
-      response.data.map((ele)=>{
-        if(ele.mobileNo===mobiledata){
-          sum +=ele.totalPrice;
-         
-        }
-      })
-      sessionStorage.setItem("sum",0)
-      sessionStorage.setItem("sum",sum)
-      setCartData(response.data)})
-  }
-
-  // Order page
   function ordernow() {
-    navigate("/payment");
+    if (cartCount > 0) {
+      navigate("/payment");
+    }
   }
 let sum=0;
   useEffect(() => {
     axios.get("http://localhost:8083/carts/all").then((response) => {
+      setCartCount(0);
       sum=0;
       response.data.map((ele)=>{
         if(ele.mobileNo===mobiledata){
+          setCartCount(count => count + 1);
           sum +=ele.totalPrice;
-         
         }
       })
       sessionStorage.setItem("sum",0)
       sessionStorage.setItem("sum",sum)
       setCartData(response.data);
-      axios.get("http://localhost:8078/orders").then((res)=>{
-        setoldData(res.data);
-      })
+ 
     });
   },[],sum);
-
- 
-
- 
-
+  
   return (
     <>
       <ProductNavigation />
@@ -125,27 +67,12 @@ let sum=0;
             
             return (
               <>
-              
                 <tr className="tabledata">
                   <td><img width="50px" height="50px" src={ele.imageUrl}/></td>
                   <td>{ele.name}</td>
                   <td>{ele.price * ele.quantity}</td>
                   <td>{ele.quantity}</td>
-                  <button
-                    onClick={() => pluseChange(ele.id)}
-                    className="buttonclass1"
-                  >
-                    +
-                  </button>
-                  <button
-                    onClick={() => minusChange(ele.id)}
-                    className="buttonclass2"
-                  >
-                    -
-                  </button>
-                  
-                 
-                </tr>
+                  </tr>
               </>
             );
           } else {
@@ -176,65 +103,7 @@ let sum=0;
                     </MDBTypography>
     
                     <hr />
-    
-                    <div className="d-flex justify-content-between align-items-center mb-4">
-                      <div>
-                        <p className="mb-1"> old Orders</p>
-                     
-                      </div>
-                     
-                    </div>
-                    
-      {oldData.map((ele)=>{
-          if (ele.mobileNo === mobiledata){
-            
-        return(
-          <>
-               <MDBCard className="mb-3">
-                      <MDBCardBody>
-                        <div className="d-flex justify-content-between">
-                          <div className="d-flex flex-row align-items-center">
-                            <div>
-                              <MDBCardImage
-                                src={ele.imageUrl}
-                                fluid className="rounded-3" style={{ width: "65px" }}
-                                alt="Shopping item" />
-                            </div>
-                            <div className="ms-3">
-                              <MDBTypography tag="h5">
-                                {/* product name */}
-                               {ele.name}
-                              </MDBTypography>
-
-                              <p className="small mb-0"></p>
-                            </div>
-                          </div>
-                          <div className="d-flex flex-row align-items-center">
-                            <div style={{ width: "50px" }}>
-                              <MDBTypography tag="h5" className="fw-normal mb-0">
-                                {/* quantity */}
-                                {ele.quantity}
-                              </MDBTypography>
-                            </div>
-                            <div style={{ width: "80px" }}>
-                              <MDBTypography tag="h5" className="mb-0">
-                                {/* price */}
-                                {ele.totalPrice}
-                              </MDBTypography>
-                            </div>
-                            <a href="#!" style={{ color: "#cecece" }}>
-                              <MDBIcon fas icon="trash-alt" />
-                            </a>
-                          </div>
-                        </div>
-                        <p>{ele.date}</p>
-                        
-                      </MDBCardBody>
-                    </MDBCard>
-          </>
-        )}
-      })}    
-                    <MDBCard className="mb-3">
+     <MDBCard className="mb-3">
                   
                     </MDBCard>
                   </MDBCol>
@@ -263,9 +132,7 @@ let sum=0;
                         <a href="#!" type="submit" className="text-white">
                           <MDBIcon fab icon="cc-paypal fa-2x me-2" />
                         </a>
-    
-                     
-                      </MDBCardBody>
+                 </MDBCardBody>
                     </MDBCard>
                   </MDBCol>
                 </MDBRow>
