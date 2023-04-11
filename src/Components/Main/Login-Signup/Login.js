@@ -47,6 +47,10 @@ function UserLogin() {
         let session = sessionStorage.getItem("data");
         if (session === null) {
           sessionStorage.setItem("data", ele.mobileNo);
+          
+
+
+        
         } else {
           sessionStorage.removeItem("data");
           sessionStorage.setItem("data", ele.mobileNo);

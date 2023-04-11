@@ -29,13 +29,18 @@ import {
         console.log("saveorderIsCalled")
         cartData.map((element)=>{
           if(element.mobileNo===mobiledata){
-            
+            console.log(element.mobileNo)
 
-            axios.post("http://localhost:8078/orders",{...element,date})
-            .then((response)=>console.log(response))
-            axios
+            axios.post('http://localhost:8078/orders', JSON.stringify({...element, date}), {
+              headers: {
+                 'Content-Type': 'application/json'
+              }
+           })
+           .then((response)=>console.log(response))
+           .catch((error) => console.log(error));
+           axios
             .delete(`http://localhost:8083/carts/delete/${element.mobileNo}`)
-            .then((res) => console.log(res));
+             .then((res) => console.log(res));
           }
         })
         navigate("/order");

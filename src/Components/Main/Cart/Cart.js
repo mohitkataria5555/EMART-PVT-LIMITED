@@ -26,16 +26,16 @@ export default function Cart() {
  
 
   // CartData Code : Cart Increament Code
-  function pluseChange(id) {
+  function pluseChange(mobileNo) {
     cartData.map((element) => {
-      if (element.id === id) {
+      if (element.mobileNo === mobileNo) {
         let ele = {
           ...element,
           quantity: element.quantity + 1,
           totalPrice:(element.quantity+1)*element.price
         };
         axios
-          .put(`http://localhost:8083/carts/update/${id}`, ele)
+          .put(`http://localhost:8083/carts/update/${mobileNo}`, ele)
           .then((response) => {});  
       }
 
@@ -54,16 +54,16 @@ export default function Cart() {
   }
 
   // CartData Code : Cart Decreament Code
-  function minusChange(id) {
+  function minusChange(mobileNo) {
     cartData.map((element) => {
-      if (element.id === id) {
+      if (element.mobileNo === mobileNo) {
         let ele = {
           ...element,
           quantity: element.quantity - 1,
           totalPrice:(element.quantity-1)*element.price
         };
         axios
-          .put(`http://localhost:8083/carts/update/${id}`, ele)
+          .put(`http://localhost:8083/carts/update/${mobileNo}`, ele)
           .then((response) => {});
       }
     });
@@ -131,6 +131,18 @@ let sum=0;
                   <td>{ele.name}</td>
                   <td>{ele.price * ele.quantity}</td>
                   <td>{ele.quantity}</td>
+                  <button
+                    onClick={() => pluseChange(ele.id)}
+                    className="buttonclass1"
+                  >
+                    +
+                  </button>
+                  <button
+                    onClick={() => minusChange(ele.id)}
+                    className="buttonclass2"
+                  >
+                    -
+                  </button>
                   
                  
                 </tr>

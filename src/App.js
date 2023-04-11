@@ -11,6 +11,8 @@ import MyOrder from "./Components/Main/PlaceYourOrder/placeYourOrder";
 import AdminLogin from "./Components/Main/Admin/AdminLogin";
 import AdminHome from "./Components/Main/Admin/AdminHome";
 import AddProducts from "./Components/Main/Admin/AddProducts";
+import OldOrders from "./Components/Main/Cart/OldOrders";
+import Profile from "./Components/Main/Login-Signup/Profile";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/adminHome" element={<AdminHome />} />
           <Route path="/adminAddProducts" element={<AddProducts />} />
+          <Route path="/oldOrders" element={<OldOrders />}/>
+          <Route path="/profile" element={<Profile />}/>
         </Routes>
       </BrowserRouter>
     </div>

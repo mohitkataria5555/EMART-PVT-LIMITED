@@ -16,6 +16,12 @@ function ProductNavigation() {
   function change1() {
     navigate("/");
   }
+  function change3(){
+    navigate("/oldOrders")
+  }
+  function change4(){
+    navigate("/profile")
+  }
   return (
     <>
       <Navbar  className="bg-dark" expand="lg" fixed="top">
@@ -30,6 +36,9 @@ function ProductNavigation() {
             >
               <Nav.Link style={{backgroundColor:"white", width:140,height:40, borderRadius:5,marginRight:5}} onClick={()=>navigate("/productpage")}>PRODUCT</Nav.Link>
               <Nav.Link style={{backgroundColor:"white", width:140,height:40, borderRadius:5,marginRight:5}} onClick={change2}>MY-CART</Nav.Link>
+              
+              <Nav.Link style={{backgroundColor:"white", width:140,height:40, borderRadius:5,marginRight:5}} onClick={change3}>Orders</Nav.Link>
+              <Nav.Link style={{backgroundColor:"white", width:140,height:40, borderRadius:5,marginRight:5}} onClick={change4}>My Profile</Nav.Link>
               <NavDropdown style={{backgroundColor:"white", width:140,height:40, borderRadius:5,marginRight:5}} title="LOGOUT" id="navbarScrollingDropdown">
                 <NavDropdown.Item style={{backgroundColor:"white", width:140,height:40, borderRadius:5,marginRight:5}}  onClick={change1}>LOGOUT</NavDropdown.Item>
               </NavDropdown>

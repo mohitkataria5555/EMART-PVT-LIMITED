@@ -1,0 +1,26 @@
+.updateBtn {
+    color: white;
+    border-radius: 4px;
+    background-color: rgba(157, 34, 53, 1);
+    border: none;
+    padding: 7px;
+  }
+  
+  .updateBtnU {
+    margin-left: 15rem;
+  }
+  
+  #passwordSpan {
+    margin-left: 19rem;
+  }
+  
+  .bigbtn {
+    color: white;
+    border-radius: 4px;
+    background-color: rgba(157, 34, 53, 1);
+    border: none;
+    padding: 3px;
+    height: 3rem;
+    margin-top: 2px;
+    width: 100%;
+  }
