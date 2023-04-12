@@ -23,6 +23,53 @@ export default function AdminLogin() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [backData, SetBacKData] = useState([]);
+
+  const setYourEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const setYourPassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const check = (e) => {
+    e.preventDefault();
+
+    let loggedIn = false;
+
+    backData.map((ele) => {
+      if (ele.email === email && ele.password === password) {
+        let session = sessionStorage.getItem("data");
+        if (session === null) {
+          sessionStorage.setItem("data", ele.mobileNo);
+          
+
+
+        
+        } else {
+          sessionStorage.removeItem("data");
+          sessionStorage.setItem("data", ele.mobileNo);
+        }
+        loggedIn = true;
+      }
+    });
+
+    if (loggedIn) {
+      alert("You have successfully logged in.");
+      navigate("/adminAddProducts");
+    } else {
+      alert("Incorrect email or password. Please try again.");
+    }
+  };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8084/admins/all")
+      .then((response) => SetBacKData(response.data));
+  }, []);
+
+
 
  
   return (
@@ -64,6 +111,7 @@ export default function AdminLogin() {
                   type="email"
                   placeholder=" Your Email / MobileNo"
                   size="lg"
+                  onChange={(e) => setYourEmail(e)}
                   
                 />
                 <MDBInput
@@ -72,6 +120,7 @@ export default function AdminLogin() {
                   type="password"
                   placeholder=" Your Password"
                   size="lg"
+                  onChange={(e) => setYourPassword(e)}
                   
                 />
 
@@ -79,6 +128,7 @@ export default function AdminLogin() {
                   className="mb-4 px-5"
                   color="dark"
                   size="lg"
+                  onClick={check}
                  
                 >
                   Login
