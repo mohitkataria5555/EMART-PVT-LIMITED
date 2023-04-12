@@ -35,14 +35,7 @@ function AdminNavigate() {
               navbarScroll
             >
               <Nav.Link style={{backgroundColor:"white", width:140,height:40, borderRadius:5,marginRight:5} }onClick={()=>navigate("/")} >HOME</Nav.Link>
-              <NavDropdown style={{backgroundColor:"white", width:140,height:40, borderRadius:5,marginRight:5}} title="LOGIN" id="navbarScrollingDropdown">
-                <NavDropdown.Item style={{backgroundColor:"", width:140,height:40, borderRadius:8,marginRight:5}}  onClick={()=>navigate("/userlogin")}>
-                  USER LOGIN
-                </NavDropdown.Item>
-                <NavDropdown.Item style={{backgroundColor:"", width:140,height:40, borderRadius:8,marginRight:5}}  onClick={()=>navigate("/admin")}>
-                  ADMIN LOGIN
-                </NavDropdown.Item>
-              </NavDropdown>
+              <Nav.Link style={{backgroundColor:"white", width:140,height:40, borderRadius:5,marginRight:5}} onClick={change1} >LOGIN</Nav.Link>
               <Nav.Link style={{backgroundColor:"white", width:140,height:40, borderRadius:5,marginRight:5}}  onClick={()=>navigate("/userregistration")}>SIGN-UP</Nav.Link>
             </Nav>
           
