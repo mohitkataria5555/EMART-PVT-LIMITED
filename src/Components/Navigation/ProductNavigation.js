@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { logOut } from "../Main/Login-Signup/CheckUserLogin";
 
 import { useNavigate } from "react-router-dom";
 function ProductNavigation() {
@@ -14,6 +15,8 @@ function ProductNavigation() {
   }
 
   function change1() {
+
+     logOut();
     navigate("/");
   }
   function change3(){

@@ -41,7 +41,7 @@ function ProductComponent(props) {
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroup.Item>PRICE: {props.data.price}</ListGroup.Item>
-        <ListGroup.Item>Quantity: {props.data.quantity} </ListGroup.Item>
+        <ListGroup.Item>Category: {props.data.categoryName} </ListGroup.Item>
       </ListGroup>
       <Card.Body>
         <button

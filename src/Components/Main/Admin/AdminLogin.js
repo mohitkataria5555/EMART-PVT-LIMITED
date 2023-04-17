@@ -80,7 +80,7 @@ export default function AdminLogin() {
           <MDBRow className="g-0">
             <MDBCol md="6">
               <MDBCardImage
-                src="https://cdn2.vectorstock.com/i/1000x1000/31/56/amazon-logo-vector-39773156.jpg"
+                src="https://blog.cengage.com/wp-content/uploads/2020/04/Amazon-logo.jpg"
                 alt="login form"
                 className="rounded-start w-100"
               />

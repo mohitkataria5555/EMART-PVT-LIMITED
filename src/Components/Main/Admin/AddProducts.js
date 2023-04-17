@@ -115,7 +115,7 @@ function prodId(event){
             type="number"
             class="form-control"
             id="prodquan"
-            placeholder="1/2/3"
+            placeholder="$"
             onChange={prodPrice}
             required
           />
