@@ -24,7 +24,62 @@ export default function Cart() {
   const [cartCount, setCartCount] = useState(0);
  
   let mobiledata = parseInt(sessionStorage.getItem("data"));
- 
+  console.log(mobiledata)
+  // CartData Code : Cart Increament Code
+  function pluseChange(mobiledata) {
+    cartData.map((element) => {
+      if (element.mobiledata === mobiledata) {
+        let ele = {
+          ...element,
+          quantity: element.quantity + 1,
+          totalPrice:(element.quantity+1)*element.price
+        };
+        axios
+          .put(`http://localhost:8083/carts/update/${mobiledata}`, ele)
+          .then((response) => {});  
+      }
+
+    });
+    axios.get("http://localhost:8083/carts/all").then((response) => {
+      sum=0;
+      response.data.map((ele)=>{
+        if(ele.mobileNo===mobiledata){
+          sum +=ele.totalPrice;
+         
+        }
+      })
+      sessionStorage.setItem("sum",0)
+      sessionStorage.setItem("sum",sum)
+      setCartData(response.data)})
+  }
+
+  // CartData Code : Cart Decreament Code
+  function minusChange(mobiledata) {
+    cartData.map((element) => {
+      if (element.mobiledata === mobiledata) {
+        let ele = {
+          ...element,
+          quantity: element.quantity - 1,
+          totalPrice:(element.quantity-1)*element.price
+        };
+        axios
+          .put(`http://localhost:8083/carts/update/${mobiledata}`, ele)
+          .then((response) => {});
+      }
+    });
+    axios.get("http://localhost:8083/carts/all").then((response) => {
+      sum=0;
+      response.data.map((ele)=>{
+        if(ele.mobileNo===mobiledata){
+          sum +=ele.totalPrice;
+         
+        }
+      })
+      sessionStorage.setItem("sum",0)
+      sessionStorage.setItem("sum",sum)
+      setCartData(response.data)})
+  }
+
 
   function ordernow() {
     if (cartCount > 0) {
@@ -72,6 +127,18 @@ let sum=0;
                   <td>{ele.name}</td>
                   <td>{ele.price * ele.quantity}</td>
                   <td>{ele.quantity}</td>
+                  <button
+                    onClick={() => pluseChange(ele.id)}
+                    className="buttonclass1"
+                  >
+                    +
+                  </button>
+                  <button
+                    onClick={() => minusChange(ele.id)}
+                    className="buttonclass2"
+                  >
+                    -
+                  </button>
                   </tr>
               </>
             );

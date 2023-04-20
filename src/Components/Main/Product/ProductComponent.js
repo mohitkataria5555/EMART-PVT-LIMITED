@@ -9,20 +9,35 @@ function ProductComponent(props) {
   const [productData1, setProductData1] = useState([]);
 
   function cartHandler(id) {
+    const productToAdd = productData1.find((ele) => ele.id === id);
     setCartAdd(true);
     setButtonValue("Product is added");
 
-    productData1.forEach((ele) => {
-      if (ele.id === id) {
-        ele = {
-          ...ele,
-          mobileNo: parseInt(sessionStorage.getItem("data")),
-          totalPrice: ele.quantity * ele.price,
-        };
-        axios
-          .post("http://localhost:8083/carts/add", ele)
-          .then((response) => console.log(response));
-      }
+    if (productToAdd.quantity === 0) {
+      alert("Product is out of stock!");
+      setButtonValue("Out of Stock");
+      return;
+    }
+  
+    const updatedProduct = {
+      ...productToAdd,
+      mobileNo: parseInt(sessionStorage.getItem("data")),
+      totalPrice: productToAdd.quantity * productToAdd.price,
+      quantity: productToAdd.quantity - 1,
+    };
+    const addedQuantity={
+      ...productToAdd,
+      mobileNo: parseInt(sessionStorage.getItem("data")),
+      totalPrice: productToAdd.price,
+      quantity: 1,
+    }
+  
+    axios.post("http://localhost:8083/carts/add", addedQuantity).then((response) => {
+      console.log(response);
+    });
+  
+    axios.put(`http://localhost:8079/api/products/update/${id}`, updatedProduct).then((response) => {
+      console.log(response);
     });
   }
   useEffect(() => {
@@ -42,6 +57,7 @@ function ProductComponent(props) {
       <ListGroup className="list-group-flush">
         <ListGroup.Item>PRICE: {props.data.price}</ListGroup.Item>
         <ListGroup.Item>Category: {props.data.categoryName} </ListGroup.Item>
+        <ListGroup.Item>Quantity: {props.data.quantity} </ListGroup.Item>
       </ListGroup>
       <Card.Body>
         <button
